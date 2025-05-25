@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Renovasi Paras</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Icon Library -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ff8ec9;
+      color: #fff;
+    }
+
+    header {
+      background: #f7a6dd;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+    }
+
+    .logo {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 16px;
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    nav ul li a:hover {
+      color: #ff57b2;
+      border-bottom: 1px solid #ff57b2;
+    }
+
+    .menu-icon {
+      display: none;
+      cursor: pointer;
+      margin-left: 16px;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+  nav ul#menuList {
+    display: none;
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    background: #f7a6dd;
+    padding: 12px;
+    border-radius: 8px;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  nav ul#menuList.show {
+    display: flex;
+  }
+}
+
+
+    nav ul.mobile-hidden {
+      display: none;
+      flex-direction: column;
+      background-color: #f7a6dd;
+      position: absolute;
+      top: 64px;
+      right: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    nav ul.mobile-hidden.show {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(to bottom right, #ffb6e6, #ff8ec9);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #fff;
+      color: #ff57b2;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 40px 20px;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .section h2 {
+      text-align: center;
+      color: #ff57b2;
+    }
+
+    .card-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .card-container {
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.4s ease;
+    }
+
+    .card-1 {
+      background:#FF90BB;
+    }
+
+    .card-1 h2 {
+      color: #000000;
+    }
+
+    .card-1 p {
+      color: #000000;
+    }
+
+    .card-1 button {
+      color: #000000;
+    }
+
+    .card-2 {
+    background: #FFC1DA;
+    }
+
+    .card-2 h2 {
+      color: #BB4949;
+    }
+
+    .card-2 p {
+      color: #BB4949;
+    }
+
+    .card-2 button {
+      color: #000000;
+    }
+
+    .card-3 {
+    background: #F8F8E1; 
+    }
+
+     .card-3 h2 {
+      color: #824848;
+    }
+
+    .card-3 p {
+      color: #824848;
+    }
+
+    .card-3 button {
+      color: #000000;
+    }
+
+
+    .card-4 {
+    background: #8ACCD5;
+    }
+
+    .card-4 h2 {
+      color: #FFFFFF;
+    }
+
+    .card-4 p {
+      color: #FFFFFF;
+    }
+
+     .card-4 button {
+      color: #000000;
+    }
+
+    .card-5 {
+    background: #FF9F00; 
+    }
+
+     .card-5 h2 {
+      color: #BB4949;
+    }
+
+    .card-5 p {
+      color: #BB4949;
+    }
+
+     .card-5 button {
+      color: #000000;
+    }
+
+    .card-6 {
+    background: #F4631E; 
+    }
+
+    .card-6 h2 {
+      color: #FFFFFF;
+    }
+
+    .card-6 p {
+      color: #FFFFFF;
+    }
+
+     .card-6 button {
+      color: #000000;
+    }
+
+    .card-container .summary h2 {
+      text-align: left;
+    }
+
+    .detail {
+      display: none;
+    }
+
+    .card-container.active .summary {
+      display: none;
+    }
+
+    .card-container.active .detail {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .button {
+      background: white;
+      border: 2px solid;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .character {
+      max-width: 180px;
+    }
+
+    .detail-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .detail-content {
+        flex-direction: row;
+        text-align: left;
+        gap: 1.5rem;
+      }
+    }
+
+    /* produk niehh */
+     .container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  justify-content: center;  /* Menengahkan isi container */
+  padding: 20px;
+  max-width: 800px;         /* Atur lebar maksimal container */
+  margin: 0 auto;           /* Tengahkan container di halaman */
+   flex-wrap: wrap; /* Tambahkan supaya bisa melipat saat kecil */
+}
+
+    .card {
+  flex: 1 1 100%;
+  max-width: 300px;         /* Tambahkan batas maksimal lebar */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+     /* Responsive untuk layar kecil (misalnya HP) */
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        max-width: 90%;  /* lebih kecil dan responsif di layar HP */
+      }
+    }
+ footer {
+      background: #f7a6dd;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+   .detail {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.card-container.active .detail {
+  display: flex;
+  opacity: 1;
+  max-height: 800px;
+  animation: fadeSlideIn 0.5s ease;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.grid .produk{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.produk {
+  background: #b34b4b;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.produk p {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.ig-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;          /* Lingkaran ukuran total */
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ffc0cb; /* Pink pastel */
+  color: white;
+  font-size: 14px;      /* Ukuran ikon */
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.ig-icon:hover {
+  background-color: #ff9bb3; /* Warna hover */
+  transform: scale(1.1);     /* Efek sedikit membesar */
+}
+
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="/asset/RENOVASI 1.svg" alt="Renovasi Paras" height="32" />
+      Renovasi Paras.
+    </div>
+    <nav>
+      <ul id="menuList">
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#karakter">Karakter</a></li>
+        <li><a href="#produk">Produk</a></li>
+      </ul>
+      <div class="menu-icon" id="menuToggle">
+        <i class="ph ph-list"></i>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Renovasi Paras.</h1>
+    <p>ruang kreatif yang mengubah ketidaksempurnaan menjadi keindahan. Kami menyulap bahan mentah jadi karya bermakna dengan wajah baru yang menarik semua kalangan.</p>
+    <button onclick="document.getElementById('produk').scrollIntoView({ behavior: 'smooth' })">Lihat Produk Kami</button>
+  </section>
+
+  <section class="section" id="tentang">
+    <h2>Tentang Kami</h2>
+    <p style="max-width: 600px; margin: auto; text-align: center;">
+      Kami dengan bangga mempersembahkan gantungan kunci dan strap HP yang fungsional sekaligus sarat nilai budaya. Salah satu varian unggulan kami adalah Karakter Nusantara—tokoh-tokoh dalam balutan pakaian adat dari berbagai daerah di Indonesia. Tak hanya sebagai aksesori, produk ini juga menjadi media edukasi dan pelestarian budaya. Didesain dengan detail dan sentuhan artistik, cocok untuk hadiah, koleksi, atau cendera mata khas Indonesia.
+    </p>
+  </section>
+
+  <section class="section" id="karakter">
+    <h2>Karakter</h2>
+    <div class="card-wrapper">
+
+      <!-- Template kartu (01 - 06) dipangkas demi singkat, silakan gunakan struktur seperti yang sudah kamu tulis sebelumnya, hanya tambahkan class `summary h2 { text-align: left }` seperti di atas -->
+
+      <!-- CONTOH KARTU -->
+      <div class="card-container card-1">
+        <div class="summary">
+          <h2>01</h2>
+          <h3><strong>Mas Gondès -</strong><br><span style="color: rgb(232, 229, 229);">Juragan Kain Batik</span></h3>
+          <button class="button" onclick="toggleDetail(this)">Baca Selengkapnya</button>
+        </div>
+        <div class="detail">
+          <div class="detail-content">
+            <div>
+              <p>bocah paling gaya sejawa-jawanya. Kalau jalan, sarungnya dikibas-kibas kayak jubah superhero—meski kadang nyangkut di pagar.</p>
+              <h4><strong>Mas Gondès -</strong> <span style="color: rgb(232, 229, 229);">Juragan Kain Batik</span></h4>
+              <button class="button" onclick="toggleDetail(this)">Kembali</button>
+            </div>
+            <img src="/asset/mas gondes.svg" alt="Karakter" class="character" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container card-2">
+        <div class="summary">
+          <h2 div="color-1">02</h2>
+          <h3><strong>Uda Kanduang -</strong><br><span style="color: rgb(168, 168, 168);">Tukang Melawak</span></h3>
+          <button class="button" onclick="toggleDetail(this)">Baca Selengkapnya</button>
+        </div>
+        <div class="detail">
+          <div class="detail-content">
+            <div>
+              <p>Uda Kanduang pakai pakaian adat Minang lengkap dan suka berdiri tegak kaya patung. Hobinya ikut lomba pidato adat, tapi ujungnya selalu malah jadi stand-up comedy.</p>
+              <h4><strong>Uda Kanduang -</strong> <span style="color: rgb(168, 168, 168);">Tukang Melawak</span></h4>
+              <button class="button" onclick="toggleDetail(this)">Kembali</button>
+            </div>
+            <img src="/asset/uda kanduang.svg" alt="Karakter" class="character" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container card-3">
+        <div class="summary">
+          <h2>03</h2>
+          <h3><strong>Bung Kaka -</strong><br><span style="color: rgb(182, 182, 182);">Panglima Suara Hutan</span></h3>
+          <button class="button" onclick="toggleDetail(this)">Baca Selengkapnya</button>
+        </div>
+        <div class="detail">
+          <div class="detail-content">
+            <div>
+              <p>Bung Kaka pakai rok rumbai, badan dicat, dan hobi teriak “huhah!” setiap ketemu temen. Dia bisa komunikasi sama burung dengan siul.</p>
+              <h4><strong>Bung Kaka -</strong> <span style="color: rgb(182, 182, 182);">Panglima Suara Hutan</span></h4>
+              <button class="button" onclick="toggleDetail(this)">Kembali</button>
+            </div>
+            <img src="/asset/bung kaka.svg" alt="Karakter" class="character" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container card-4">
+        <div class="summary">
+          <h2>04</h2>
+          <h3><strong>Nona Rumbai -</strong><br><span style="color: rgb(232, 229, 229);">Si Ratu Jungle Dance</span></h3>
+          <button class="button" onclick="toggleDetail(this)">Baca Selengkapnya</button>
+        </div>
+        <div class="detail">
+          <div class="detail-content">
+            <div>
+              <p>Nona Rumbai selalu senyum lebar dengan pakaian rumbai-rumbai dan lukisan wajah cerah. Dia suka joget ala burung Cenderawasih.</p>
+              <h4><strong>Nona Rumbai -</strong> <span style="color: rgb(232, 229, 229);">Si Ratu Jungle Dance</span></h4>
+              <button class="button" onclick="toggleDetail(this)">Kembali</button>
+            </div>
+            <img src="/asset/nona rumbai.svg" alt="Karakter" class="character" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container card-5">
+        <div class="summary">
+          <h2>05</h2>
+          <h3><strong>Uni Cetar -</strong><br><span style="color: rgb(232, 229, 229);">Si Gadis Aksesoris</span></h3>
+          <button class="button" onclick="toggleDetail(this)">Baca Selengkapnya</button>
+        </div>
+        <div class="detail">
+          <div class="detail-content">
+            <div>
+              <p>Uni Cetar selalu tampil heboh dengan suntiang (mahkota besar). Uni Cetar adalah gadih Minang paling anggun, paling heboh, dan paling “meletik” se-Ranah Padang.</p>
+              <h4><strong>Uni Cetar -</strong> <span style="color: rgb(232, 229, 229);">Si Gadis Aksesoris</span></h4>
+              <button class="button" onclick="toggleDetail(this)">Kembali</button>
+            </div>
+            <img src="/asset/uni cetar.svg" alt="Karakter" class="character" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container card-6">
+        <div class="summary">
+          <h2>06</h2>
+          <h3><strong>Mbok Jum -</strong><br><span style="color: rgb(232, 229, 229);">Si Ratu Sanggul Angin</span></h3>
+          <button class="button" onclick="toggleDetail(this)">Baca Selengkapnya</button>
+        </div>
+        <div class="detail">
+          <div class="detail-content">
+            <div>
+              <p>Mbok Jum tampil anggun dengan kebaya dan sanggul seukuran bakpao. Sanggul Mbok Jum tahan badai.</p>
+              <h4><strong>Mbok Jum -</strong> <span style="color: rgb(232, 229, 229);">Si Ratu Sanggul Angin</span></h4>
+              <button class="button" onclick="toggleDetail(this)">Kembali</button>
+            </div>
+            <img src="/asset/mbok jum.svg" alt="Karakter" class="character" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="produk">
+    <h2>Produk Kami</h2>
+    <div class="container">
+    <div class="card">
+      <img src="/asset/produk 1.jpeg" alt="Produk 1">
+      <p>Gantungan Kunci dengan karakter yang sudah di pilih. Tampak 1 sisi. Ditambah dengan manik-manik yang lucu dan serasi dengan adat karakter tersebut.</p>
+    </div>
+    <div class="card">
+      <img src="/asset/packaging.jpeg" alt="Produk 2">
+      <p>packaging dengan tema adat nusantara. Menggunakan kertas Art Carton 310 gram, dengan laminasi doff.</p>
+    </div>
+  </div>
+
+</section>
+
+  <footer>
+    <div>Renovasi Paras &copy; 2025 | Hubungi kami di <a href="https://www.instagram.com/renovasi_paras?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram" style="color: black; font-size: 32px;">
+      <i class="ph ph-instagram-logo ig-icon"></i>
+    </a></div>
+  </footer>
+
+ <script>
+  function toggleDetail(button) {
+    const card = button.closest('.card-container');
+    const detail = card.querySelector('.detail');
+
+    if (card.classList.contains('active')) {
+      // Tambahkan class animasi keluar
+      detail.style.opacity = '0';
+      detail.style.maxHeight = '0';
+
+      // Tunggu sampai animasi selesai, baru hapus class active
+      setTimeout(() => {
+        card.classList.remove('active');
+        // Reset inline style agar animasi bisa dimainkan ulang di klik berikutnya
+        detail.style.opacity = '';
+        detail.style.maxHeight = '';
+      }, 500); // durasi harus sama dengan CSS transition!
+    } else {
+      card.classList.add('active');
+    }
+  }
+
+  // toggle menu (jika digunakan)
+  const menuToggle = document.getElementById('menuToggle');
+  const menuList = document.getElementById('menuList');
+  if (menuToggle && menuList) {
+    menuToggle.addEventListener('click', () => {
+      menuList.classList.toggle('show');
+    });
+  }
+</script>
+
+</body>
+</html>
